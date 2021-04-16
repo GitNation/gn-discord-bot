@@ -15,9 +15,9 @@ if (!CONVERT_KIT_API_SECRET) {
 if (!CONVERT_KIT_API_KEY) {
   throw new Error('CONVERT_KIT_API_KEY env variable is required')
 }
-if (!VERIFIER_API_KEY) {
-  throw new Error('VERIFIER_API_KEY env variable is required')
-}
+// if (!VERIFIER_API_KEY) {
+//   throw new Error('VERIFIER_API_KEY env variable is required')
+// }
 
 function getSubscriberEndpoint(email: string) {
   const url = new URL('https://api.convertkit.com/v3/subscribers')

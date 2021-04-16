@@ -14,6 +14,20 @@
 [![Code of Conduct][coc-badge]][coc]
 <!-- prettier-ignore-end -->
 
+## Fork notes
+
+TODO
+
+- Replace convertkit to Mailchimp
+
+### Start instrcutions
+
+```
+DISCORD_BOT_TOKEN=xxx CONVERT_KIT_API_SECRET=test CONVERT_KIT_API_KEY=test npm start
+```
+
+\_\_
+
 ## The problem
 
 The KCD Community on discord needs a bot to automate onboarding and other
@@ -32,7 +46,6 @@ To get a list of commands, run: `?help` in
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Installation](#installation)
 - [Usage](#usage)
 - [Issues](#issues)
   - [🐛 Bugs](#-bugs)

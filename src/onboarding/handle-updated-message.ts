@@ -58,22 +58,27 @@ async function handleUpdatedMessage(
     .find(s => s.getAnswer(messageAfterEditedMessage.content, member))
   if (!editedStep) return
 
-  const error = await editedStep.validate({
-    message: newMessage,
-    answers: previousAnswers,
-  })
-  if (error) {
-    await send(`${editErrorMessagePrefix} ${error}`)
-    return
+  if (process.env.VERIFIER_API_KEY) {
+    const error = await editedStep.validate({
+      message: newMessage,
+      answers: previousAnswers,
+    })
+    if (error) {
+      await send(`${editErrorMessagePrefix} ${error}`)
+      return
+    }
   }
 
   const promises: Array<Promise<unknown>> = []
 
-  // get the error message we printed previously due to any bad edits
-  const stepErrorMessage = await editedStep.validate({
-    message: oldMessage,
-    answers: previousAnswers,
-  })
+  let stepErrorMessage
+  if (process.env.VERIFIER_API_KEY) {
+    // get the error message we printed previously due to any bad edits
+    stepErrorMessage = await editedStep.validate({
+      message: oldMessage,
+      answers: previousAnswers,
+    })
+  }
   const editErrorMessages = botMessages.filter(({content}) =>
     content.startsWith(editErrorMessagePrefix),
   )

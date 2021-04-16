@@ -1,7 +1,10 @@
 import Rollbar from 'rollbar'
 
 function getLogger(): typeof console {
-  if (process.env.NODE_ENV === 'production') {
+  if (
+    process.env.NODE_ENV === 'production' &&
+    process.env.ROLLBAR_ACCESS_TOKEN
+  ) {
     // include and initialize the rollbar library with your access token
     // @ts-expect-error ugh...
     return new Rollbar({

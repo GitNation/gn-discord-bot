@@ -78,10 +78,12 @@ async function handleNewMessage(message: TDiscord.Message) {
     return
   }
 
-  const error = await currentStep.validate({message, answers})
-  if (error) {
-    await send(error)
-    return
+  if (process.env.VERIFIER_API_KEY) {
+    const error = await currentStep.validate({message, answers})
+    if (error) {
+      await send(error)
+      return
+    }
   }
 
   // @ts-expect-error TODO: make validate return the answer value
